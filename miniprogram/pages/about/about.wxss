@@ -1,0 +1,43 @@
+/* 数据说明 */
+.about-head { display: flex; flex-direction: column; align-items: center; padding-top: 36rpx; }
+.about-logo { width: 128rpx; height: 128rpx; border-radius: 26rpx; margin-bottom: 20rpx; }
+.about-title { font-size: 32rpx; font-weight: 600; margin-bottom: 16rpx; }
+.about-row { font-size: 26rpx; color: var(--text-sub); line-height: 2; }
+
+.section-title {
+  font-size: 30rpx; font-weight: 500;
+  margin: 16rpx 32rpx 0;
+}
+
+/* 统计 */
+.stat-grid {
+  display: flex; flex-wrap: wrap;
+}
+.stat-item { width: 50%; text-align: center; padding: 20rpx 0; }
+.stat-num { font-size: 42rpx; font-weight: 600; color: var(--primary); }
+.stat-label { font-size: 22rpx; color: var(--text-sub); margin-top: 8rpx; }
+
+/* 来源 */
+.source-item {
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid var(--border);
+}
+.source-item:last-child { border-bottom: none; }
+.source-name { font-size: 28rpx; font-weight: 500; margin-bottom: 8rpx; }
+.source-meta { font-size: 22rpx; color: var(--text-sub); line-height: 1.8; }
+
+/* 文本块 */
+.text-block {
+  font-size: 25rpx; color: #4a5568;
+  line-height: 1.9;
+}
+.text-block view { margin-bottom: 16rpx; }
+.text-block view:last-child { margin-bottom: 0; }
+
+/* 隐私说明子条目 */
+.privacy-sub {
+  padding-left: 24rpx;
+  color: var(--text-sub);
+  font-size: 23rpx;
+  margin-bottom: 4rpx;
+}

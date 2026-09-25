@@ -1,0 +1,71 @@
+/**app.wxss**/
+page {
+  --primary: #2b6cb0;
+  --primary-light: #ebf4fb;
+  --reach: #e53e3e;
+  --reach-bg: #fff5f5;
+  --match: #2f81c4;
+  --match-bg: #f0f7fd;
+  --safety: #2f9e44;
+  --safety-bg: #f4fbf5;
+  --text-main: #1a202c;
+  --text-sub: #718096;
+  --border: #e2e8f0;
+  --bg: #f5f7fa;
+  background: var(--bg);
+  color: var(--text-main);
+  font-size: 28rpx;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+}
+
+/* 通用卡片 */
+.card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 28rpx;
+  margin: 20rpx 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(43, 108, 176, 0.06);
+}
+
+/* 通用按钮 */
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  padding: 20rpx 0;
+  text-align: center;
+}
+.btn-primary[disabled] {
+  background: #a0aec0;
+  color: #fff;
+}
+.btn-ghost {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-radius: 44rpx;
+  font-size: 28rpx;
+  padding: 16rpx 0;
+  text-align: center;
+}
+
+.text-sub { color: var(--text-sub); font-size: 24rpx; }
+.text-primary { color: var(--primary); }
+.flex-row { display: flex; align-items: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+
+/* 标签 */
+.tag {
+  display: inline-block;
+  font-size: 20rpx;
+  padding: 4rpx 14rpx;
+  border-radius: 8rpx;
+  margin-right: 10rpx;
+}
+.tag-985 { background: #fff5f5; color: #c53030; }
+.tag-211 { background: #fffff0; color: #b7791f; }
+.tag-dual { background: #f0fff4; color: #2f855a; }
+.tag-nature { background: #edf2f7; color: #4a5568; }
+.tag-reach { background: var(--reach-bg); color: var(--reach); }
+.tag-match { background: var(--match-bg); color: var(--match); }
+.tag-safety { background: var(--safety-bg); color: var(--safety); }

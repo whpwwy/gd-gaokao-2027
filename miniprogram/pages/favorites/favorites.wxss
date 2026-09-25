@@ -1,0 +1,26 @@
+/* 我的收藏 */
+.empty { text-align: center; padding: 140rpx 40rpx; }
+.empty-icon { font-size: 90rpx; color: #cbd5e0; }
+.empty-text { font-size: 30rpx; margin: 24rpx 0 12rpx; }
+
+.fav-item {
+  display: flex; align-items: center;
+  background: #fff; margin: 12rpx 24rpx; border-radius: 16rpx;
+  padding: 26rpx 28rpx;
+}
+.item-hover { opacity: 0.85; }
+.fav-badge {
+  background: var(--primary-light); color: var(--primary);
+  font-size: 22rpx; border-radius: 10rpx;
+  padding: 8rpx 16rpx; margin-right: 22rpx;
+}
+.fav-body { flex: 1; }
+.fav-name { font-size: 29rpx; font-weight: 500; }
+.fav-majors { font-size: 22rpx; color: var(--text-sub); margin-top: 6rpx; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.fav-meta { font-size: 22rpx; color: var(--text-sub); margin-top: 8rpx; }
+.fav-arrow { color: #cbd5e0; font-size: 40rpx; }
+
+.tip {
+  text-align: center; font-size: 22rpx; color: var(--text-sub);
+  padding: 24rpx;
+}

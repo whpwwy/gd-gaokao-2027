@@ -1,0 +1,122 @@
+<!-- 院校详情 -->
+<view class="head-card" wx:if="{{school}}">
+  <view class="head-top">
+    <view class="head-name">{{school.name}}</view>
+    <view class="fav-btn {{schoolFav ? 'faved' : ''}}" bindtap="toggleSchoolFav">
+      {{schoolFav ? '★ 已收藏' : '☆ 收藏'}}
+    </view>
+  </view>
+  <view class="head-tags">
+    <text class="tag tag-985" wx:if="{{school.is985}}">985</text>
+    <text class="tag tag-211" wx:if="{{school.is211}}">211</text>
+    <text class="tag tag-dual" wx:if="{{school.isDualClass}}">双一流</text>
+    <text class="tag tag-nature">{{school.nature}}</text>
+    <text class="tag tag-nature">{{school.levelText}}</text>
+  </view>
+  <view class="head-meta">
+    <view>院校代码：{{school.code}}</view>
+    <view>所在地区：{{school.region}} · {{school.city}}</view>
+    <view>院校类型：{{school.type || '—'}}</view>
+    <view>隶属：{{school.belong || '—'}}</view>
+  </view>
+</view>
+
+<!-- 年度校线趋势 -->
+<view class="section-title">年度校线（当年录取分最低的专业组）</view>
+<view class="card trend-card">
+  <view class="trend-head">
+    <view class="t-year">年份</view>
+    <view class="t-score">最低分</view>
+    <view class="t-rank">最低排位</view>
+  </view>
+  <view class="trend-row" wx:for="{{trend}}" wx:key="year">
+    <view class="t-year">{{item.year}}</view>
+    <view class="t-score">
+      <block wx:if="{{item.score !== null}}">{{item.score}}</block>
+      <text wx:else class="text-sub">—</text>
+    </view>
+    <view class="t-rank">
+      <block wx:if="{{item.rank !== null}}">{{item.rank}}</block>
+      <text wx:else class="text-sub">—</text>
+    </view>
+  </view>
+</view>
+
+<!-- 历年专业组投档 -->
+<view class="section-title">
+  院校专业组投档情况
+  <text class="help-ico" catchtap="showGroupHelp">?</text>
+</view>
+<scroll-view class="year-scroll" scroll-x>
+  <view class="year-tabs">
+    <view
+      wx:for="{{yearTabs}}" wx:key="*this"
+      class="year-tab {{activeTab === item ? 'active' : ''}}"
+      data-tab="{{item}}" bindtap="switchTab"
+    >{{item === 'all' ? '全部' : item}}</view>
+  </view>
+</scroll-view>
+
+<view class="card adm-card">
+  <view class="adm-head">
+    <view class="col-year">年份/专业组</view>
+    <view class="col-plan">计划/投档</view>
+    <view class="col-score">最低分</view>
+    <view class="col-rank">最低排位</view>
+    <view class="col-fav">收藏</view>
+  </view>
+
+  <view class="adm-row" wx:for="{{admViews}}" wx:key="key">
+    <view class="col-year">
+      <view>{{item.year}}</view>
+      <view class="group-code">{{item.groupLabel}}</view>
+      <view class="group-majors" wx:if="{{item.majorsText}}">{{item.majorsText}}</view>
+    </view>
+    <view class="col-plan">
+      <view>{{item.plan}}</view>
+      <view class="text-sub">{{item.admitted}}</view>
+    </view>
+    <view class="col-score">
+      <block wx:if="{{item.noAdmission}}">
+        <text class="text-sub">无人投档</text>
+      </block>
+      <block wx:else>
+        {{item.score}}<text wx:if="{{item.scoreCapped}}">以上</text>
+      </block>
+    </view>
+    <view class="col-rank">
+      <block wx:if="{{item.rank !== null}}">
+        {{item.rank}}<text wx:if="{{item.rankCapped}}">以内</text>
+      </block>
+      <text wx:else class="text-sub">—</text>
+    </view>
+    <view class="col-fav" data-group="{{item.group}}" catchtap="toggleGroupFav">
+      <text class="{{item.fav ? 'fav-on' : 'fav-off'}}">{{item.fav ? '★' : '☆'}}</text>
+    </view>
+  </view>
+</view>
+
+<!-- 选科要求 -->
+<view class="section-title">专业选科要求（2024-2026版）</view>
+<view class="card sub-card" wx:if="{{hasSubjects}}">
+  <view class="sub-item" wx:for="{{subjectViews}}" wx:key="key">
+    <view class="sub-head" data-key="{{item.key}}" bindtap="toggleSubject">
+      <view class="sub-cat">
+        <text class="tag tag-nature">{{item.level}}</text>
+        {{item.category}}
+      </view>
+      <view class="sub-meta">
+        <view class="sub-req">{{item.firstText}} · {{item.reqText}}</view>
+        <view class="sub-arrow">{{item.open ? '收起 ▴' : item.majorCount + '个专业 ▾'}}</view>
+      </view>
+    </view>
+    <view class="major-list" wx:if="{{item.open}}">
+      <view class="major-line" wx:for="{{item.majors}}" wx:for-item="major" wx:key="*this">
+        {{major}}
+      </view>
+    </view>
+  </view>
+</view>
+<view class="card text-sub" wx:if="{{!hasSubjects}}">
+  暂无该校选科要求数据
+</view>

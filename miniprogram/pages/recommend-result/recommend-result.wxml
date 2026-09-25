@@ -1,0 +1,121 @@
+<!-- 推荐结果 -->
+<view class="summary-card">
+  <view class="summary-line">
+    <view class="summary-item">
+      <view class="summary-num">{{rank}}</view>
+      <view class="summary-label">我的位次</view>
+    </view>
+    <view
+      class="summary-item {{reach.length ? 'can-tap' : ''}}"
+      hover-class="{{reach.length ? 'summary-hover' : 'none'}}"
+      data-tier="reach" bindtap="jumpTier"
+    >
+      <view class="summary-num text-reach">{{reach.length}}</view>
+      <view class="summary-label">冲</view>
+    </view>
+    <view
+      class="summary-item {{match.length ? 'can-tap' : ''}}"
+      hover-class="{{match.length ? 'summary-hover' : 'none'}}"
+      data-tier="match" bindtap="jumpTier"
+    >
+      <view class="summary-num text-match">{{match.length}}</view>
+      <view class="summary-label">稳</view>
+    </view>
+    <view
+      class="summary-item {{safety.length ? 'can-tap' : ''}}"
+      hover-class="{{safety.length ? 'summary-hover' : 'none'}}"
+      data-tier="safety" bindtap="jumpTier"
+    >
+      <view class="summary-num text-safety">{{safety.length}}</view>
+      <view class="summary-label">保</view>
+    </view>
+  </view>
+</view>
+
+<block wx:if="{{hasResult && total === 0}}">
+  <view class="empty-box">
+    <view>当前条件下没有找到可推荐的院校专业组</view>
+    <view class="empty-hint">可以尝试：放宽筛选条件，或检查位次输入</view>
+    <view class="btn-ghost empty-btn" bindtap="goBack">返回修改</view>
+  </view>
+</block>
+
+<!-- 冲 -->
+<template name="candList">
+  <view
+    class="cand-card" wx:for="{{list}}" wx:key="key"
+    data-code="{{item.code}}" hover-class="card-hover" bindtap="goDetail"
+  >
+    <view class="cand-top">
+      <view class="cand-name">{{item.name}}</view>
+      <view class="prob-tag {{item.probClass}}">概率 {{item.probability}}</view>
+    </view>
+    <view class="cand-tags">
+      <text class="tag tag-985" wx:if="{{item.is985}}">985</text>
+      <text class="tag tag-211" wx:if="{{item.is211}}">211</text>
+      <text class="tag tag-dual" wx:if="{{item.isDualClass}}">双一流</text>
+      <text class="tag tag-nature">{{item.nature}}</text>
+      <text class="tag tag-nature">{{item.region}}</text>
+    </view>
+    <view class="cand-mid">
+      <view class="mid-left">
+        <view class="mid-group">
+          {{item.groupLabel}}
+          <text class="help-ico" catchtap="showGroupHelp">?</text>
+        </view>
+        <view class="mid-majors" wx:if="{{item.majorsText}}">含：{{item.majorsText}}</view>
+        <view class="mid-ref">{{item.refYear}}年门槛排位 {{item.refRank}}</view>
+      </view>
+      <view class="mid-margin tier-{{tier}}">{{item.marginText}}</view>
+    </view>
+    <view class="cand-bottom">
+      <view class="cand-history">近三年位次 {{item.historyText}}</view>
+      <view
+        class="cand-fav {{item.fav ? 'faved' : ''}}"
+        catchtap="toggleFav"
+        data-code="{{item.code}}" data-group="{{item.group}}" data-name="{{item.name}}"
+      >{{item.fav ? '★' : '☆'}}</view>
+    </view>
+  </view>
+</template>
+
+<view class="tier-section" id="reach-section" wx:if="{{reach.length}}">
+  <view class="tier-head" hover-class="tier-head-hover" data-tier="reach" bindtap="toggleTier">
+    <view class="tier-title bg-reach">冲</view>
+    <view class="tier-desc">位次略低于门槛，有机会但需承担风险</view>
+    <view class="tier-count">{{reach.length}} 个</view>
+    <view class="tier-arrow">{{reachOpen ? '▾' : '▸'}}</view>
+  </view>
+  <block wx:if="{{reachOpen}}">
+    <template is="candList" data="{{list: reach, tier: 'reach'}}" />
+  </block>
+</view>
+
+<view class="tier-section" id="match-section" wx:if="{{match.length}}">
+  <view class="tier-head" hover-class="tier-head-hover" data-tier="match" bindtap="toggleTier">
+    <view class="tier-title bg-match">稳</view>
+    <view class="tier-desc">位次与门槛相当，录取把握较大</view>
+    <view class="tier-count">{{match.length}} 个</view>
+    <view class="tier-arrow">{{matchOpen ? '▾' : '▸'}}</view>
+  </view>
+  <block wx:if="{{matchOpen}}">
+    <template is="candList" data="{{list: match, tier: 'match'}}" />
+  </block>
+</view>
+
+<view class="tier-section" id="safety-section" wx:if="{{safety.length}}">
+  <view class="tier-head" hover-class="tier-head-hover" data-tier="safety" bindtap="toggleTier">
+    <view class="tier-title bg-safety">保</view>
+    <view class="tier-desc">位次明显优于门槛，用于兜底防滑档</view>
+    <view class="tier-count">{{safety.length}} 个</view>
+    <view class="tier-arrow">{{safetyOpen ? '▾' : '▸'}}</view>
+  </view>
+  <block wx:if="{{safetyOpen}}">
+    <template is="candList" data="{{list: safety, tier: 'safety'}}" />
+  </block>
+</view>
+
+<view class="bottom-note" wx:if="{{total > 0}}">
+  结果依据近年院校专业组投档位次按等位次法计算，仅供参考。
+  请务必对照广东省教育考试院当年《招生专业目录》核对选科要求与招生计划。
+</view>

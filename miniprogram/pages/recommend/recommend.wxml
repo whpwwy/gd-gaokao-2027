@@ -1,0 +1,95 @@
+<!-- 志愿推荐表单 -->
+
+<!-- 输入方式 -->
+<view class="card">
+  <view class="mode-switch">
+    <view class="mode-item {{mode === 'score' ? 'active' : ''}}" data-mode="score" bindtap="switchMode">按分数</view>
+    <view class="mode-item {{mode === 'rank' ? 'active' : ''}}" data-mode="rank" bindtap="switchMode">按位次</view>
+  </view>
+
+  <block wx:if="{{mode === 'score'}}">
+    <input
+      class="big-input" type="number" placeholder="请输入分数（0-750）"
+      value="{{scoreInput}}" bindinput="onScoreInput"
+    />
+    <view class="input-hint" wx:if="{{resolvedRank !== null}}">
+      按{{latestYear}}年一分一段表，预估位次约 <text class="hint-num">{{resolvedRank}}</text> 名
+    </view>
+    <view class="input-hint" wx:if="{{resolvedRank === null}}">
+      当前为2027届考生，分数将按{{latestYear}}年（最新）位次口径估算
+    </view>
+  </block>
+
+  <block wx:else>
+    <input
+      class="big-input" type="number" placeholder="请输入全省位次（如 30000）"
+      value="{{rankInput}}" bindinput="onRankInput"
+    />
+    <view class="input-hint">直接输入位次可跳过分数换算，位次跨年可比</view>
+  </block>
+</view>
+
+<!-- 志愿数量 -->
+<view class="card">
+  <view class="card-label">志愿数量（院校专业组）</view>
+  <view class="seg-row">
+    <view
+      wx:for="{{countOptions}}" wx:key="*this"
+      class="seg-item {{count === item ? 'active' : ''}}"
+      data-count="{{item}}" bindtap="selectCount"
+    >{{item}}个</view>
+  </view>
+</view>
+
+<!-- 筛选条件 -->
+<view class="card">
+  <view class="card-label">层次</view>
+  <view class="chip-row">
+    <view class="chip {{level1 ? 'on' : ''}}" data-which="1" bindtap="toggleLevel">本科</view>
+    <view class="chip {{level2 ? 'on' : ''}}" data-which="2" bindtap="toggleLevel">专科</view>
+  </view>
+
+  <view class="card-label" style="margin-top: 28rpx;">办学性质</view>
+  <view class="chip-row">
+    <view class="chip {{naturePublic ? 'on' : ''}}" data-which="public" bindtap="toggleNature">公办</view>
+    <view class="chip {{naturePrivate ? 'on' : ''}}" data-which="private" bindtap="toggleNature">民办</view>
+    <view class="chip {{natureJoint ? 'on' : ''}}" data-which="joint" bindtap="toggleNature">中外合作</view>
+  </view>
+
+  <view class="card-label" style="margin-top: 28rpx;">院校标签</view>
+  <view class="chip-row">
+    <view class="chip {{only985 ? 'on' : ''}}" bindtap="toggle985">仅985</view>
+    <view class="chip {{only211 ? 'on' : ''}}" bindtap="toggle211">仅211</view>
+  </view>
+
+  <view class="card-label" style="margin-top: 28rpx;">
+    计划招生人数（最少人数，留空不约束）
+  </view>
+  <input
+    class="kw-input" type="number" placeholder="如：30（只保留计划数≥30人的专业组）"
+    value="{{minPlanInput}}" bindinput="onMinPlanInput"
+  />
+
+  <view class="card-label" style="margin-top: 28rpx;">
+    院校地区（可多选，不选为不限）
+  </view>
+  <view class="chip-row">
+    <view class="chip {{regionAllOff ? 'on' : ''}}" bindtap="clearRegions">不限</view>
+    <view
+      wx:for="{{regionViews}}" wx:key="name"
+      class="chip {{item.on ? 'on' : ''}}"
+      data-name="{{item.name}}" bindtap="toggleRegion"
+    >{{item.name}}</view>
+  </view>
+
+  <view class="card-label" style="margin-top: 28rpx;">院校名称关键词</view>
+  <input
+    class="kw-input" placeholder="如：理工 / 医学（选填）"
+    value="{{keyword}}" bindinput="onKeywordInput"
+  />
+</view>
+
+<view class="generate-wrap">
+  <view class="btn-primary" bindtap="generate">生成志愿推荐</view>
+  <view class="generate-note">推荐结果基于历史位次法计算，仅供参考，须以官方招生计划为准</view>
+</view>

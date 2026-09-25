@@ -1,0 +1,55 @@
+<!-- 位次查询 -->
+<view class="card">
+  <view class="form-label">输入分数</view>
+  <input class="form-input" type="number" placeholder="请输入高考分数（0-750）" value="{{scoreInput}}" bindinput="onScoreInput" />
+
+  <view class="form-label" style="margin-top: 28rpx;">基准年份</view>
+  <view class="year-tabs">
+    <view
+      wx:for="{{years}}" wx:key="*this"
+      class="year-tab {{baseYear === item ? 'active' : ''}}"
+      data-year="{{item}}" bindtap="selectYear"
+    >{{item}}</view>
+  </view>
+
+  <view class="btn-primary" style="margin-top: 32rpx;" bindtap="doQuery">查询位次</view>
+</view>
+
+<!-- 位次结果 -->
+<view class="card result-card" wx:if="{{rankResult}}">
+  <view class="result-tip">
+    {{baseYear}}年 {{rankResult.score}}分 对应全省位次
+  </view>
+  <view class="result-rank">
+    {{rankResult.rank}}<text class="result-unit">名</text>
+  </view>
+  <view class="result-note" wx:if="{{rankResult.outOfRange === 'above'}}">
+    注：该分数高于{{baseYear}}年一分一段表最高分，位次为{{rankResult.rank}}名以内
+  </view>
+  <view class="result-note" wx:if="{{rankResult.outOfRange === 'below'}}">
+    注：该分数低于{{baseYear}}年一分一段表最低分，实际位次在{{rankResult.rank}}名之后
+  </view>
+</view>
+
+<!-- 历年同位分 -->
+<view class="section-title" wx:if="{{equivalents.length}}">历年同位分</view>
+<view class="card eq-card" wx:if="{{equivalents.length}}">
+  <view class="eq-row eq-head">
+    <view class="eq-year">年份</view>
+    <view class="eq-score">同位分</view>
+    <view class="eq-rank">位次</view>
+  </view>
+  <view class="eq-row" wx:for="{{equivalents}}" wx:key="year">
+    <view class="eq-year">{{item.year}}</view>
+    <view class="eq-score">
+      <block wx:if="{{item.score !== null}}">{{item.score}} 分</block>
+      <text wx:else class="text-sub">超出表范围</text>
+    </view>
+    <view class="eq-rank">{{item.rank}}</view>
+  </view>
+  <view class="eq-tip">
+    同位分：与你的位次（{{rankResult.rank}}名）在各年对应的分数。
+    历年志愿比较应看位次，而不是裸分。
+  </view>
+  <view class="btn-ghost" style="margin-top: 20rpx;" bindtap="goRecommend">用此位次生成志愿推荐</view>
+</view>

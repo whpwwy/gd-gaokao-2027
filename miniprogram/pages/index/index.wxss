@@ -1,0 +1,81 @@
+/* 首页 */
+.hero {
+  background: linear-gradient(135deg, #2b6cb0 0%, #3b82c4 60%, #4a94d4 100%);
+  padding: 60rpx 40rpx 70rpx;
+  color: #fff;
+}
+.hero-title { font-size: 44rpx; font-weight: 600; }
+.hero-sub { font-size: 30rpx; opacity: 0.92; margin-top: 12rpx; }
+.hero-badge {
+  display: inline-block;
+  margin-top: 28rpx;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 24rpx;
+  padding: 8rpx 24rpx;
+  font-size: 24rpx;
+}
+
+/* 快速查询 */
+.query-card { margin-top: -36rpx; }
+.query-label { font-size: 28rpx; color: var(--text-sub); margin-bottom: 20rpx; }
+.query-row { display: flex; align-items: center; }
+.query-input {
+  flex: 1;
+  background: var(--bg);
+  border-radius: 12rpx;
+  padding: 22rpx 24rpx;
+  font-size: 34rpx;
+}
+.query-btn {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 12rpx;
+  padding: 22rpx 44rpx;
+  margin-left: 20rpx;
+  font-size: 30rpx;
+}
+.query-result {
+  margin-top: 24rpx;
+  font-size: 28rpx;
+  color: var(--text-main);
+  line-height: 1.6;
+}
+.result-num { color: var(--primary); font-size: 38rpx; font-weight: 600; }
+.quick-links { display: flex; margin-top: 24rpx; gap: 20rpx; }
+.quick-link {
+  flex: 1; text-align: center; padding: 18rpx 0;
+  border-radius: 36rpx; background: var(--bg);
+  color: var(--text-sub); font-size: 26rpx;
+}
+.quick-link.primary { background: var(--primary-light); color: var(--primary); }
+
+/* 功能入口 */
+.entry-list { margin: 8rpx 0; }
+.entry-item {
+  display: flex; align-items: center;
+  background: #fff; margin: 16rpx 24rpx;
+  border-radius: 16rpx; padding: 28rpx;
+  box-shadow: 0 2rpx 12rpx rgba(43, 108, 176, 0.06);
+}
+.entry-hover { transform: scale(0.98); opacity: 0.9; }
+.entry-icon {
+  width: 80rpx; height: 80rpx; border-radius: 20rpx;
+  color: #fff; font-size: 34rpx;
+  display: flex; align-items: center; justify-content: center;
+  margin-right: 24rpx;
+}
+.icon-reach { background: linear-gradient(135deg, #e53e3e, #f56565); }
+.icon-match { background: linear-gradient(135deg, #2b6cb0, #4299e1); }
+.icon-school { background: linear-gradient(135deg, #2f9e44, #48bb78); }
+.entry-body { flex: 1; }
+.entry-title { font-size: 30rpx; font-weight: 500; }
+.entry-desc { font-size: 24rpx; color: var(--text-sub); margin-top: 8rpx; }
+.entry-arrow { color: #cbd5e0; font-size: 40rpx; }
+
+/* 底部 */
+.footer-links {
+  display: flex; justify-content: center; align-items: center;
+  padding: 40rpx 0 60rpx;
+}
+.footer-link { color: var(--text-sub); font-size: 26rpx; padding: 0 16rpx; }
+.footer-dot { color: #cbd5e0; }

@@ -1,0 +1,46 @@
+/* 院校搜索 */
+.search-bar {
+  display: flex; align-items: center;
+  padding: 20rpx 24rpx 8rpx;
+}
+.search-input {
+  flex: 1; background: #fff; border-radius: 36rpx;
+  padding: 18rpx 28rpx; font-size: 28rpx;
+  box-shadow: 0 2rpx 8rpx rgba(43, 108, 176, 0.05);
+}
+.search-btn { color: var(--primary); padding: 0 12rpx 0 24rpx; font-size: 28rpx; }
+
+.filter-row {
+  display: flex; flex-wrap: wrap; align-items: center;
+  padding: 12rpx 24rpx; gap: 16rpx;
+}
+.chip {
+  padding: 10rpx 28rpx; border-radius: 28rpx;
+  background: #fff; color: var(--text-sub); font-size: 24rpx;
+  border: 1rpx solid var(--border);
+}
+.chip.on { background: var(--primary); color: #fff; border-color: var(--primary); }
+.region-chip { min-width: 120rpx; text-align: center; }
+
+.result-count {
+  font-size: 24rpx; color: var(--text-sub);
+  padding: 8rpx 32rpx 12rpx;
+}
+
+.school-item {
+  display: flex; align-items: center; justify-content: space-between;
+  background: #fff; margin: 12rpx 24rpx; border-radius: 16rpx;
+  padding: 26rpx 28rpx;
+}
+.item-hover { opacity: 0.85; }
+.school-name { font-size: 30rpx; font-weight: 500; }
+.school-tags { margin: 12rpx 0; }
+.school-region { font-size: 22rpx; color: var(--text-sub); }
+.school-score { text-align: right; margin-left: 20rpx; }
+.score-num { font-size: 40rpx; color: var(--primary); font-weight: 600; }
+.score-rank { font-size: 22rpx; color: var(--text-sub); margin-top: 6rpx; }
+
+.list-tip {
+  text-align: center; color: var(--text-sub);
+  font-size: 24rpx; padding: 24rpx;
+}

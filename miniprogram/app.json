@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/rank/rank",
+    "pages/recommend/recommend",
+    "pages/recommend-result/recommend-result",
+    "pages/school-search/school-search",
+    "pages/favorites/favorites",
+    "pages/about/about"
+  ],
+  "subPackages": [
+    {
+      "root": "subpkg",
+      "pages": [
+        "pages/school-detail/school-detail"
+      ]
+    }
+  ],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "广东高考历史查询",
+    "navigationBarBackgroundColor": "#2b6cb0",
+    "backgroundColor": "#f5f7fa"
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "lazyCodeLoading": "requiredComponents",
+  "preloadRule": {
+    "pages/recommend-result/recommend-result": {
+      "network": "all",
+      "packages": ["subpkg"]
+    },
+    "pages/school-search/school-search": {
+      "network": "all",
+      "packages": ["subpkg"]
+    },
+    "pages/favorites/favorites": {
+      "network": "all",
+      "packages": ["subpkg"]
+    }
+  }
+}

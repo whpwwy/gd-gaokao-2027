@@ -1,0 +1,50 @@
+<!-- 院校搜索 -->
+<view class="search-bar">
+  <input
+    class="search-input" placeholder="搜索院校名称或代码"
+    value="{{keyword}}" bindinput="onInput" bindconfirm="doSearch" confirm-type="search"
+  />
+  <view class="search-btn" bindtap="doSearch">搜索</view>
+</view>
+
+<view class="filter-row">
+  <view class="chip {{only985 ? 'on' : ''}}" bindtap="toggle985">985</view>
+  <view class="chip {{only211 ? 'on' : ''}}" bindtap="toggle211">211</view>
+  <view class="chip {{onlyDual ? 'on' : ''}}" bindtap="toggleDual">双一流</view>
+  <picker class="region-picker" range="{{regionOptions}}" value="{{regionIndex}}" bindchange="onRegionChange">
+    <view class="chip region-chip">
+      {{regionIndex === 0 ? '地区' : regionOptions[regionIndex]}} ▾
+    </view>
+  </picker>
+</view>
+
+<view class="result-count">共 {{resultCount}} 所院校</view>
+
+<!-- 结果列表 -->
+<view
+  class="school-item" wx:for="{{views}}" wx:key="code"
+  data-code="{{item.code}}" hover-class="item-hover" bindtap="goDetail"
+>
+  <view class="school-main">
+    <view class="school-name">{{item.name}}</view>
+    <view class="school-tags">
+      <text class="tag tag-985" wx:if="{{item.is985}}">985</text>
+      <text class="tag tag-211" wx:if="{{item.is211}}">211</text>
+      <text class="tag tag-dual" wx:if="{{item.isDualClass}}">双一流</text>
+      <text class="tag tag-nature">{{item.nature}}</text>
+    </view>
+    <view class="school-region">{{item.region}}</view>
+  </view>
+  <view class="school-score" wx:if="{{item.latest}}">
+    <view class="score-num">
+      {{item.latest.score}}<text wx:if="{{item.latest.scoreCapped}}">以上</text>
+    </view>
+    <view class="score-rank">
+      最低排位 {{item.latest.rank}}<text wx:if="{{item.latest.rankCapped}}">以内</text>
+    </view>
+  </view>
+</view>
+
+<view class="list-tip" wx:if="{{hasMore}}">上拉加载更多</view>
+<view class="list-tip" wx:if="{{!hasMore && views.length}}">— 已加载全部 —</view>
+<view class="list-tip" wx:if="{{!views.length}}">未找到符合条件的院校</view>

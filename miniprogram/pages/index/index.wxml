@@ -1,0 +1,67 @@
+<!-- 首页 -->
+<view class="hero">
+  <view class="hero-title">广东省2027年高考</view>
+  <view class="hero-sub">历史信息查询与志愿推荐</view>
+  <view class="hero-badge">物理类 · {{years[0]}}-{{latestYear}}年数据</view>
+</view>
+
+<!-- 分数快速查询 -->
+<view class="card query-card">
+  <view class="query-label">输入分数，快速查位次</view>
+  <view class="query-row">
+    <input class="query-input" type="number" placeholder="如 600" value="{{scoreInput}}" bindinput="onScoreInput" />
+    <view class="query-btn" bindtap="doQuickQuery">查询</view>
+  </view>
+  <view class="query-result" wx:if="{{quickRank}}">
+    <block wx:if="{{quickRank.outOfRange === 'above'}}">
+      该分数高于{{latestYear}}年表中最高分，全省位次约 <text class="result-num">{{quickRank.rank}}</text> 名以内
+    </block>
+    <block wx:elif="{{quickRank.outOfRange === 'below'}}">
+      该分数低于{{latestYear}}年表中最低分，全省位次在 <text class="result-num">{{quickRank.rank}}</text> 名之后
+    </block>
+    <block wx:else>
+      {{latestYear}}年对应全省位次：<text class="result-num">{{quickRank.rank}}</text> 名
+    </block>
+  </view>
+  <view class="quick-links" wx:if="{{quickRank}}">
+    <view class="quick-link" bindtap="goRank">查历年同位分</view>
+    <view class="quick-link primary" bindtap="goRecommend">生成志愿推荐</view>
+  </view>
+</view>
+
+<!-- 功能入口 -->
+<view class="entry-list">
+  <view class="entry-item" hover-class="entry-hover" bindtap="goRecommend">
+    <view class="entry-icon icon-reach">荐</view>
+    <view class="entry-body">
+      <view class="entry-title">志愿推荐</view>
+      <view class="entry-desc">按分数/位次推荐冲、稳、保院校专业组</view>
+    </view>
+    <view class="entry-arrow">›</view>
+  </view>
+
+  <view class="entry-item" hover-class="entry-hover" bindtap="goRank">
+    <view class="entry-icon icon-match">位</view>
+    <view class="entry-body">
+      <view class="entry-title">位次查询</view>
+      <view class="entry-desc">分数换算全省位次，查看历年同位分</view>
+    </view>
+    <view class="entry-arrow">›</view>
+  </view>
+
+  <view class="entry-item" hover-class="entry-hover" bindtap="goSchoolSearch">
+    <view class="entry-icon icon-school">校</view>
+    <view class="entry-body">
+      <view class="entry-title">院校查询</view>
+      <view class="entry-desc">按院校查历年录取分数与最低排位</view>
+    </view>
+    <view class="entry-arrow">›</view>
+  </view>
+</view>
+
+<!-- 底部辅助入口 -->
+<view class="footer-links">
+  <view class="footer-link" bindtap="goFavorites">我的收藏</view>
+  <view class="footer-dot">·</view>
+  <view class="footer-link" bindtap="goAbout">数据说明</view>
+</view>

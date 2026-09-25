@@ -1,0 +1,88 @@
+/* 院校详情 */
+.head-card {
+  background: linear-gradient(135deg, #2b6cb0, #3b82c4);
+  margin: 24rpx; border-radius: 16rpx; padding: 30rpx;
+  color: #fff;
+}
+.head-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.head-name { font-size: 38rpx; font-weight: 600; flex: 1; padding-right: 20rpx; }
+.fav-btn {
+  font-size: 24rpx; background: rgba(255,255,255,0.2);
+  border-radius: 28rpx; padding: 10rpx 22rpx; white-space: nowrap;
+}
+.head-tags { margin: 20rpx 0; }
+.head-tags .tag { background: rgba(255,255,255,0.2); color: #fff; }
+.head-meta { font-size: 24rpx; line-height: 2; opacity: 0.92; }
+
+.section-title {
+  font-size: 30rpx; font-weight: 500;
+  margin: 20rpx 32rpx 4rpx;
+}
+
+/* 帮助图标（点击查看专业组说明） */
+.help-ico {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 30rpx; height: 30rpx; margin-left: 10rpx;
+  border: 1rpx solid var(--text-sub); border-radius: 50%;
+  font-size: 20rpx; color: var(--text-sub); line-height: 1;
+  vertical-align: 2rpx;
+}
+
+/* 校线趋势 */
+.trend-card { padding: 8rpx 24rpx; }
+.trend-head, .trend-row {
+  display: flex; align-items: center;
+  padding: 20rpx 4rpx; border-bottom: 1rpx solid var(--border);
+}
+.trend-head { color: var(--text-sub); font-size: 24rpx; padding: 12rpx 4rpx; }
+.trend-row:last-child { border-bottom: none; }
+.t-year { width: 28%; }
+.t-score { width: 32%; color: var(--primary); font-weight: 500; }
+.t-rank { width: 40%; text-align: right; }
+
+/* 年份切换 */
+.year-scroll { white-space: nowrap; padding: 16rpx 24rpx 4rpx; }
+.year-tabs { display: inline-flex; gap: 14rpx; }
+.year-tab {
+  display: inline-block; padding: 10rpx 28rpx;
+  border-radius: 26rpx; background: #fff; color: var(--text-sub);
+  font-size: 24rpx; border: 1rpx solid var(--border);
+}
+.year-tab.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+/* 投档记录表 */
+.adm-card { padding: 8rpx 16rpx; }
+.adm-head, .adm-row {
+  display: flex; align-items: center;
+  padding: 18rpx 8rpx; border-bottom: 1rpx solid var(--border);
+  font-size: 26rpx;
+}
+.adm-head { color: var(--text-sub); font-size: 22rpx; padding: 12rpx 8rpx; }
+.adm-row:last-child { border-bottom: none; }
+.col-year { width: 24%; }
+.col-plan { width: 20%; }
+.col-score { width: 20%; color: var(--primary); font-weight: 500; }
+.col-rank { width: 24%; }
+.col-fav { width: 12%; text-align: center; }
+.group-code { font-size: 20rpx; color: var(--text-sub); margin-top: 4rpx; }
+.group-majors { font-size: 18rpx; color: var(--text-sub); margin-top: 2rpx; opacity: .85; }
+.fav-on { color: #ecc94b; }
+.fav-off { color: #cbd5e0; }
+
+/* 选科要求 */
+.sub-card { padding: 0 24rpx; }
+.sub-item { border-bottom: 1rpx solid var(--border); padding: 24rpx 0; }
+.sub-item:last-child { border-bottom: none; }
+.sub-head { }
+.sub-cat { font-size: 28rpx; font-weight: 500; }
+.sub-meta {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 12rpx;
+}
+.sub-req { font-size: 22rpx; color: var(--text-sub); }
+.sub-arrow { font-size: 22rpx; color: var(--primary); white-space: nowrap; margin-left: 16rpx; }
+.major-list { margin-top: 16rpx; }
+.major-line {
+  font-size: 24rpx; color: var(--text-sub);
+  line-height: 1.9; padding-left: 12rpx;
+}

@@ -1,0 +1,13 @@
+# ---- 依赖 ----
+node_modules/
+
+# ---- 临时 / 克隆目录 ----
+.tmp-gaokao-pro/
+
+# ---- 微信开发者工具：本地私有配置（含本机路径与个人偏好，不入库） ----
+project.private.config.json
+
+# ---- 系统 / 编辑器噪声 ----
+.DS_Store
+Thumbs.db
+*.log

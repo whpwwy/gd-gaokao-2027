@@ -1,0 +1,68 @@
+<!-- 数据说明 -->
+<view class="card about-head">
+  <image class="about-logo" src="/images/logo.png" mode="aspectFit" />
+  <view class="about-title">广东省2027年高考历史信息查询推荐</view>
+  <view class="about-row">版本：v{{version}}</view>
+  <view class="about-row">数据生成日期：{{generatedAt}}</view>
+  <view class="about-row">当前科类：{{trackName}}</view>
+  <view class="about-row">覆盖年份：{{years[0]}}-{{years[years.length-1]}}年</view>
+</view>
+
+<view class="section-title">数据规模</view>
+<view class="card stat-grid">
+  <view class="stat-item">
+    <view class="stat-num">{{stats.schools}}</view>
+    <view class="stat-label">招生院校</view>
+  </view>
+  <view class="stat-item">
+    <view class="stat-num">{{stats.admissionRecords}}</view>
+    <view class="stat-label">专业组投档记录</view>
+  </view>
+  <view class="stat-item">
+    <view class="stat-num">{{stats.rankRows}}</view>
+    <view class="stat-label">一分一段数据行</view>
+  </view>
+  <view class="stat-item">
+    <view class="stat-num">{{stats.subjectRecords}}</view>
+    <view class="stat-label">选科要求条目</view>
+  </view>
+</view>
+
+<view class="section-title">数据来源</view>
+<view class="card">
+  <view class="source-item" wx:for="{{sources}}" wx:key="file">
+    <view class="source-name">{{item.name}}</view>
+    <view class="source-meta">提供方：{{item.provider}}</view>
+    <view class="source-meta">文件：{{item.file}}</view>
+    <view class="source-meta" wx:if="{{item.license}}">许可：{{item.license}}</view>
+    <view class="source-meta">采集时间：{{item.retrievedAt}}</view>
+  </view>
+</view>
+
+<view class="section-title">口径说明</view>
+<view class="card text-block">
+  <view>1. 本程序志愿推荐采用"等位次法"：以全省位次为桥梁比对历年院校专业组投档最低排位，位次跨年可比，不直接比较裸分。</view>
+  <view>2. 2027届考生在高考成绩公布前输入的分数为模考/估分，程序按最新一年（2026）一分一段表换算预估位次，结果仅作阶段性参考。</view>
+  <view>3. "683以上""178以内"等为官方公布的截断显示值，程序按其数值边界处理。</view>
+  <view>4. 选科要求为2024-2026年版；2027年起执行新版选科要求，届时以广东省教育考试院最新发布为准。</view>
+</view>
+
+<view class="section-title">隐私说明</view>
+<view class="card text-block">
+  <view>1. 本程序不收集、不获取任何个人敏感信息，包括姓名、身份证号、准考证号、手机号、通讯录、相册、位置信息、设备信息等。</view>
+  <view>2. 本程序不要求微信登录，不获取您的微信头像、昵称、OpenID 等任何账号信息。</view>
+  <view>3. 本程序为纯离线工具，运行期间不进行任何网络请求，不会向任何服务器上传您的输入数据或使用记录。</view>
+  <view>4. 您在程序中的以下数据仅保存在您本机的微信存储空间中，不会上传或共享给任何第三方：
+    <view class="privacy-sub">· 收藏记录（院校/专业组代码与名称）</view>
+    <view class="privacy-sub">· 推荐查询的临时参数（仅用于页面间传递）</view>
+  </view>
+  <view>5. 上述本地数据完全由您控制：在微信"设置 → 通用 → 存储空间"中清理本小程序缓存，或删除本小程序，即可彻底删除全部本地数据。</view>
+  <view>6. 您输入的分数、位次等查询数据仅用于在本地计算展示，程序不会保存历史查询记录。</view>
+</view>
+
+<view class="section-title">免责声明</view>
+<view class="card text-block">
+  <view>本程序为历史高考数据查询工具，所有推荐结果基于历史数据按算法自动计算，不构成录取承诺或填报指导。</view>
+  <view>志愿填报请以广东省教育考试院官方发布的当年政策、《招生专业目录》及一分一段表为准，并由考生及家长自行核对、自主决策。</view>
+  <view>如发现数据有误，欢迎对照官方来源指正。</view>
+</view>
